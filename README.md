@@ -1,8 +1,8 @@
-<ins>**ERC721LockRegistry Contract**</ins>
+# <ins>**ERC721LockRegistry Contract**</ins>
 
 This standard allows contract that implement the `ILock` interface to lock/unlock assets in place to enable/disable them from being transferred.
 
-<ins>How does this work?</ins>
+## <ins>How does this work?</ins>
 
 The Lock Registry contain four mappings:
 
@@ -26,9 +26,9 @@ The first, `approvedContract`, is a mapping that checks if an address is allowed
 
 `lockMapIndex[tokenId][lockingContract]` => lock Index of locking contract
 
-Those 2 mappings are necessary to easily track and delete lock when a contract unlocks a token
+Those 2 mappings are necessary to easily track and delete lock when a contract unlocks a token.
 
-<ins>Interface</ins>
+## <ins>Interface</ins>
 
 The `ILock` interface is very simple:
 
@@ -43,10 +43,11 @@ The first 2 functions are self explanatory. An approved contract can lock or unl
 `freeId` is an emergency function that can only be called under specific condition. Under the hood, it behaves similarly to the `unlockId` function. It can only be called if the previously approved contract that locked the asset is not approved anymore. This means that `approcedContract[badContract] => false`. This will happen if the locking contract has bad logic and prevents people from unlocking assets. By disapproving the defective contract, we allow users to remove the lock to enable transferring their asset if the choose to.
 
 
-<ins>What can it do?</ins>
+## <ins>What can it do?</ins>
+
 The lock registry is very powerful. It allows to lock assets in place which is the underlying condition of staking or securing assets.
 This means that the lock registry is ideal to guarantee that assets cannot be transferred in staking mechanisms.
-A good example would be the Play and Kollect experience created by CyberKongz.
+A good example would be the [Play and Kollect experience created by CyberKongz](https://docs.cyberkongz.com/).
 
 Furthermore it can be used to secure assets. If assets cannot move, that means that they can't be stolen. This makes the possibility to create onchain 2fa, so to speak.
-Assets could reside on a hot wallet (metamask) but be secured by a guardian address that is a multisig or a HW wallet. This allows to benefit from the flexibility of hot wallet interactions on metamask while keeping the high security of using HW wallets or multisigs without needing to click/sign endlessly your devices.
+Assets could reside on a hot wallet (metamask) but be secured by a guardian address that is a multisig or a HW wallet. This allows to benefit from the flexibility of hot wallet interactions on metamask while keeping the high security of using HW wallets or multisigs without needing to click/sign endlessly your devices. [A twitter experiment by Owl has been done on twitter](https://twitter.com/OwlOfMoistness/status/1504203389915308048).
