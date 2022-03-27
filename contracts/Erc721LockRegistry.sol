@@ -16,32 +16,32 @@ contract Erc721LockRegistry is ERC721, LockRegistry, ILock {
 	constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {
 	}
 
-    function mint(uint256 _id) external {
-        _mint(msg.sender, _id);
-    }
+	function mint(uint256 _id) external {
+		_mint(msg.sender, _id);
+	}
 
-    function transferFrom(address from, address to, uint256 tokenId) public override {
-        require(isUnlocked(tokenId), "Token is locked");
+	function transferFrom(address from, address to, uint256 tokenId) public override {
+		require(isUnlocked(tokenId), "Token is locked");
 		ERC721.transferFrom(from, to, tokenId);
 	}
 
 	function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory _data) public override {
-        require(isUnlocked(tokenId), "Token is locked");
+		require(isUnlocked(tokenId), "Token is locked");
 		ERC721.safeTransferFrom(from, to, tokenId, _data);
 	}
 
-    function lockId(uint256 _id) external override {
-        require(_exists(_id), "Token !exist");
-        _lockId(_id);
+	function lockId(uint256 _id) external override {
+		require(_exists(_id), "Token !exist");
+		_lockId(_id);
 	}
 
 	function unlockId(uint256 _id) external override {
-        require(_exists(_id), "Token !exist");
-        _unlockId(_id);
+		require(_exists(_id), "Token !exist");
+		_unlockId(_id);
 	}
 
 	function freeId(uint256 _id, address _contract) external override {
-        require(_exists(_id), "Token !exist");
-        _freeId(_id, _contract);
+		require(_exists(_id), "Token !exist");
+		_freeId(_id, _contract);
 	}
 }
