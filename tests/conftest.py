@@ -5,8 +5,8 @@ def minter_(accounts):
     return accounts[0]
 
 @pytest.fixture(scope="module")
-def nft_lock(Erc721LockRegistry, minter_):
-    return Erc721LockRegistry.deploy('', '', {'from':minter_})
+def nft_lock(TestNFT, minter_):
+    return TestNFT.deploy({'from':minter_})
 
 @pytest.fixture(scope="module")
 def ksm(KongSafetyModule, vx_poly, minter_):

@@ -16,10 +16,6 @@ contract Erc721LockRegistry is ERC721, LockRegistry, ILock {
 	constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {
 	}
 
-	function mint(uint256 _id) external {
-		_mint(msg.sender, _id);
-	}
-
 	function transferFrom(address from, address to, uint256 tokenId) public override {
 		require(isUnlocked(tokenId), "Token is locked");
 		ERC721.transferFrom(from, to, tokenId);
