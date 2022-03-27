@@ -40,7 +40,7 @@ The `ILock` interface is very simple:
 
 The first 2 functions are self explanatory. An approved contract can lock or unlock an asset. Locking an asset twice will revert, same behaviour for double unlocking.
 
-`freeId` is an emergency function that can only be called under specific condition. Under the hood, it behaves similarly to the `unlockId` function. It can only be called if the previously approved contract that locked the asset is not approved anymore. This means that `approvedContract[badContract] => false`. This will happen if the locking contract has bad logic and prevents people from unlocking assets. By disapproving the defective contract, we allow users to remove the lock to enable transferring their asset if the choose to.
+`freeId` is an emergency function that can only be called under specific condition. Under the hood, it behaves similarly to the `unlockId` function. It can only be called if the previously approved contract that locked the asset is not approved anymore. This means that `approvedContract[badContract] => false` will be required and can be changed by calling `updateApprovedContracts` and unset the initially approved contract. This should happen if the locking contract has bad logic and prevents people from unlocking assets. By disapproving the defective contract, we allow users to remove the lock to enable transferring their asset if the choose to.
 
 
 ## <ins>What can it do?</ins>
