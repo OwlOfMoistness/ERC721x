@@ -38,18 +38,17 @@ The `ILock` interface is very simple:
 		function freeId(uint256 _id, address _contract) external;
 	}
 
-The first 2 functions are self explanatory. An approved contract can lock or unlock an asset. Locking an asset twice will revert, same behaviour for double unlocking.
+An approved contract can lock or unlock an asset. Locking an asset twice will revert, same behaviour for double unlocking.
 
-`freeId` is an emergency function that can only be called under specific condition. Under the hood, it behaves similarly to the `unlockId` function. It can only be called if the previously approved contract that locked the asset is not approved anymore. This means that `approvedContract[badContract] => false` will be required and can be changed by calling `updateApprovedContracts` and unset the initially approved contract. This should happen if the locking contract has bad logic and prevents people from unlocking assets. By disapproving the defective contract, we allow users to remove the lock to enable transferring their asset if they choose to.
+`freeId` is an emergency function that can only be called under a specific condition. It behaves similarly to the `unlockId` function. It can only be called if the previously approved contract that locked the asset is no longer approved. This means that you will be required to change `approvedContract[badContract] => false` by calling `updateApprovedContracts` and unset the initially approved contract. This should only happen if the locking contract has bad logic and prevents people from unlocking assets. By disapproving the defective contract, we allow users to remove the lock to enable transferring their asset if they choose to.
 
 
 ## <ins>What can it do?</ins>
 
-The lock registry is very powerful. It allows to lock assets in place which is the underlying condition of staking or securing assets.
-This means that the lock registry is ideal to guarantee that assets cannot be transferred in staking mechanisms.
-A good example would be the [Play and Kollect experience created by CyberKongz](https://docs.cyberkongz.com/).
+The lock registry is a vital tool in web3. It allows users to lock assets in place, which is the underlying condition of staking or securing assets. If assets cannot move, they cannot be stolen. The guarantee lock registry ensures is that assets cannot be transferred in staking mechanisms.
+A key example is [Play and Kollect experience created by CyberKongz](https://docs.cyberkongz.com/).
 
-When locking an asset, the token does not need to move to a contract to interact with it and therefore does not have to leave the owner's wallet. In addition to reducing contract risks, asset holders are thus given the option to engage in an unlimited number of previously approved locking contracts simultaneously, while always retaining actual ownership of the asset.
+When locking an asset, the token does not move to a contract to interact with it and therefore does not have to leave the owner's wallet. In addition to reducing contract risks, asset holders are given the option to engage in an unlimited number of previously approved locking contracts simultaneously, while always retaining true ownership of the asset.
 
-Furthermore it can be used to secure assets. If assets cannot move, that means that they can't be stolen. This makes the possibility to create onchain 2fa, so to speak.
-Assets could reside on a hot wallet (metamask) but be secured by a guardian address that is a multisig or a HW wallet. This allows to benefit from the flexibility of hot wallet interactions on metamask while keeping the high security of using HW wallets or multisigs without needing to click/sign endlessly your devices. [A twitter experiment by Owl has been done on twitter](https://twitter.com/OwlOfMoistness/status/1504203389915308048).
+This allows for the creation of an onchain 2fa.
+Assets could reside on a hot wallet (metamask) but be secured by a guardian address that is a multisig or a HW wallet. This allows users to benefit from the flexibility of hot wallet interactions on metamask while also maintaining the high security of multisigs or HW wallets. Additionally, users would not longer need to click/sign endlessly. [A twitter experiment by Owl can be found here](https://twitter.com/OwlOfMoistness/status/1504203389915308048).
