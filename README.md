@@ -52,3 +52,7 @@ When locking an asset, the token does not move to a contract to interact with it
 
 This allows for the creation of an onchain 2fa.
 Assets could reside on a hot wallet (metamask) but be secured by a guardian address that is a multisig or a HW wallet. This allows users to benefit from the flexibility of hot wallet interactions on metamask while also maintaining the high security of multisigs or HW wallets. Additionally, users would not longer need to click/sign endlessly. [A twitter experiment by Owl can be found here](https://twitter.com/OwlOfMoistness/status/1504203389915308048).
+
+## <ins>Checkout other similar implementations</ins>
+
+The talented devs over at [Samurise](https://twitter.com/SamuRiseNFT) have implemented a similar tech for their contracts, [Check here!](https://github.com/samurisenft/erc721nes-contracts)
