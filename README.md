@@ -1,4 +1,4 @@
-# <ins>**ERC721LockRegistry Contract**</ins>
+# <ins>**ERC721x Contract**</ins>
 
 This standard allows contract that implement the `ILock` interface to lock/unlock assets in place to enable/disable them from being transferred.
 

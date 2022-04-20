@@ -9,18 +9,19 @@ pragma solidity ^0.8.2;
  */
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "../interfaces/ILock.sol";
 
-abstract contract LockRegistry is Ownable {
+abstract contract LockRegistry is Ownable, IERC721x {
 	
-	mapping(address => bool) public approvedContract;
-	mapping(uint256 => uint256) public lockCount;
-	mapping(uint256 => mapping(uint256 => address)) public lockMap;
-	mapping(uint256 => mapping(address => uint256)) public lockMapIndex;
+	mapping(address => bool) public override approvedContract;
+	mapping(uint256 => uint256) public override lockCount;
+	mapping(uint256 => mapping(uint256 => address)) public override lockMap;
+	mapping(uint256 => mapping(address => uint256)) public override lockMapIndex;
 
 	event TokenLocked(uint256 indexed tokenId, address indexed approvedContract);
 	event TokenUnlocked(uint256 indexed tokenId, address indexed approvedContract);
 
-	function isUnlocked(uint256 _id) public view returns(bool) {
+	function isUnlocked(uint256 _id) public view override returns(bool) {
 		return lockCount[_id] == 0;
 	}
 
