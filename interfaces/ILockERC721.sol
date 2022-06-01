@@ -1,6 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.2;
 
+/*
+ *     ,_,
+ *    (',')
+ *    {/"\}
+ *    -"-"-
+ */
+
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
 interface ILockERC721 is IERC721 {
