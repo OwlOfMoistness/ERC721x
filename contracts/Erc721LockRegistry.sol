@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.2;
+pragma solidity ^0.8.17;
 
 /*
  *     ,_,
@@ -39,12 +39,12 @@ contract ERC721x is ERC721, LockRegistry {
 	}
 
 	function transferFrom(address _from, address _to, uint256 _tokenId) public override virtual {
-		require(isUnlocked(tokenId), "Token is locked");
+		require(isUnlocked(_tokenId), "Token is locked");
 		ERC721.transferFrom(_from, _to, _tokenId);
 	}
 
 	function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory _data) public override virtual {
-		require(isUnlocked(tokenId), "Token is locked");
+		require(isUnlocked(_tokenId), "Token is locked");
 		ERC721.safeTransferFrom(_from, _to, _tokenId, _data);
 	}
 
