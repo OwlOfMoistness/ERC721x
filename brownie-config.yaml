@@ -2,12 +2,12 @@ networks:
   default: development
 
 dependencies:
-  - OpenZeppelin/openzeppelin-contracts@4.0.0
+  - OpenZeppelin/openzeppelin-contracts@4.6.0
 
 compiler:
   solc:
-    version: 0.8.2
+    version: 0.8.17
     remappings:
-      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.0.0"
+      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.6.0"
 
 autofetch_sources: true
