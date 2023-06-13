@@ -3,11 +3,13 @@ networks:
 
 dependencies:
   - OpenZeppelin/openzeppelin-contracts@4.6.0
+  - OpenZeppelin/openzeppelin-contracts-upgradeable@4.6.0
 
 compiler:
   solc:
     version: 0.8.17
     remappings:
       - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.6.0"
+      - "@openzeppelinupgrade=OpenZeppelin/openzeppelin-contracts-upgradeable@4.6.0"
 
 autofetch_sources: true
