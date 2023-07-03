@@ -10,7 +10,7 @@ pragma solidity ^0.8.17;
 
 import "@openzeppelinupgrade/contracts/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
 import "./LockRegistryUpgradeable.sol";
-import "../interfaces/IERC721x.sol";
+import "./interfaces/IERC721x.sol";
 
 contract ERC721xUpgradeable is ERC721EnumerableUpgradeable, LockRegistryUpgradeable {
 
