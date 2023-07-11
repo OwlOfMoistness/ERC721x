@@ -67,12 +67,12 @@ def test_safe_transfer_from_operator(nft_lock_up, accounts):
 
 def test_transfer_no_approval(nft_lock_up, accounts):
     nft_lock_up.mint(accounts[0], 1337, {'from':accounts[0]})
-    with brownie.reverts("ERC721: transfer caller is not owner nor approved"):
+    with brownie.reverts("ERC721: caller is not token owner or approved"):
         nft_lock_up.transferFrom(accounts[0], accounts[1], 1337, {'from': accounts[4]})
 
 
 def test_safe_transfer_nonexisting(nft_lock_up, accounts):
-    with brownie.reverts("ERC721: operator query for nonexistent token"):
+    with brownie.reverts("ERC721: invalid token ID"):
         nft_lock_up.safeTransferFrom(accounts[0], accounts[1], 1337, {'from': accounts[0]})
 
 
@@ -91,7 +91,7 @@ def test_safe_transfer_unowned(nft_lock_up, accounts):
 
 def test_safe_transfer_from_no_approval(nft_lock_up, accounts):
     nft_lock_up.mint(accounts[0], 1337, {'from':accounts[0]})
-    with brownie.reverts("ERC721: transfer caller is not owner nor approved"):
+    with brownie.reverts("ERC721: caller is not token owner or approved"):
         nft_lock_up.safeTransferFrom(accounts[0], accounts[1], 1337, {'from': accounts[4]})
 
 

@@ -46,12 +46,12 @@ def test_approval_event_fire(nft_lock_up, accounts):
 
 def test_illegal_approval(nft_lock_up, accounts):
     nft_lock_up.mint(accounts[0], 1337, {'from':accounts[0]})
-    with brownie.reverts("ERC721: approve caller is not owner nor approved for all"):
+    with brownie.reverts("ERC721: approve caller is not token owner or approved for all"):
         nft_lock_up.approve(accounts[1], 1337, {'from': accounts[1]})
 
 
 def test_get_approved_nonexistent(nft_lock_up, accounts):
-    with brownie.reverts("ERC721: approved query for nonexistent token"):
+    with brownie.reverts("ERC721: invalid token ID"):
         nft_lock_up.getApproved(1337)
 
 def test_approve_all(nft_lock_up, accounts):
