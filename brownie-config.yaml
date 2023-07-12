@@ -9,7 +9,7 @@ compiler:
   solc:
     version: 0.8.17
     remappings:
-      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.9.0"
-      - "@openzeppelinupgrade=OpenZeppelin/openzeppelin-contracts-upgradeable@4.9.0"
+      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.9.0/contracts"
+      - "@openzeppelinupgrade=OpenZeppelin/openzeppelin-contracts-upgradeable@4.9.0/contracts"
 
 autofetch_sources: true
