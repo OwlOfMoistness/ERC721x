@@ -8,7 +8,7 @@ pragma solidity ^0.8.17;
  *    -"-"-
  */
 
-import "@openzeppelinupgrade/contracts/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
+import "@openzeppelinupgrade/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
 import "./LockRegistryUpgradeable.sol";
 import "./interfaces/IERC721x.sol";
 
@@ -50,17 +50,17 @@ contract ERC721xUpgradeable is ERC721EnumerableUpgradeable, LockRegistryUpgradea
 		ERC721Upgradeable.safeTransferFrom(_from, _to, _tokenId, _data);
 	}
 
-	function lockId(uint256 _id) external override virtual {
+	function lockId(uint256 _id) public override virtual {
 		require(_exists(_id), "Token !exist");
 		_lockId(_id);
 	}
 
-	function unlockId(uint256 _id) external override virtual {
+	function unlockId(uint256 _id) public override virtual {
 		require(_exists(_id), "Token !exist");
 		_unlockId(_id);
 	}
 
-	function freeId(uint256 _id, address _contract) external override virtual {
+	function freeId(uint256 _id, address _contract) public override virtual {
 		require(_exists(_id), "Token !exist");
 		_freeId(_id, _contract);
 	}

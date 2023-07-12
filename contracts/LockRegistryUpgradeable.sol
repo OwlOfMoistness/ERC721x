@@ -8,8 +8,7 @@ pragma solidity ^0.8.17;
  *    -"-"-
  */
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelinupgrade/contracts/access/OwnableUpgradeable.sol";
+import "@openzeppelinupgrade/access/OwnableUpgradeable.sol";
 import "./interfaces/IERC721x.sol";
 
 abstract contract LockRegistryUpgradeable is OwnableUpgradeable, IERC721x {
