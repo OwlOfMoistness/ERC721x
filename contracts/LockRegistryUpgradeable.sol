@@ -27,18 +27,24 @@ abstract contract LockRegistryUpgradeable is OwnableUpgradeable, IERC721x {
 
 	function updateApprovedContracts(address[] calldata _contracts, bool[] calldata _values) external onlyOwner {
 		require(_contracts.length == _values.length, "!length");
-		for(uint256 i = 0; i < _contracts.length; i++)
+		for (uint256 i = 0; i < _contracts.length;) {
 			approvedContract[_contracts[i]] = _values[i];
+			unchecked {
+				++i;
+			}
+		}
 	}
 
 	function _lockId(uint256 _id) internal {
 		require(approvedContract[msg.sender], "Cannot update map");
 		require(lockMapIndex[_id][msg.sender] == 0, "ID already locked by caller");
 
-		uint256 count = lockCount[_id] + 1;
-		lockMap[_id][count] = msg.sender;
-		lockMapIndex[_id][msg.sender] = count;
-		lockCount[_id]++;
+		unchecked {
+			uint256 count = lockCount[_id] + 1;
+			lockMap[_id][count] = msg.sender;
+			lockMapIndex[_id][msg.sender] = count;
+			lockCount[_id] = count;
+		}
 		emit TokenLocked(_id, msg.sender);
 	}
 
@@ -53,11 +59,13 @@ abstract contract LockRegistryUpgradeable is OwnableUpgradeable, IERC721x {
 			lockMap[_id][index] = lastContract;
 			lockMap[_id][last] = address(0);
 			lockMapIndex[_id][lastContract] = index;
-		}
-		else
+		} else {
 			lockMap[_id][index] = address(0);
+		}
 		lockMapIndex[_id][msg.sender] = 0;
-		lockCount[_id]--;
+		unchecked {
+			lockCount[_id]--;
+		}
 		emit TokenUnlocked(_id, msg.sender);
 	}
 
@@ -73,10 +81,14 @@ abstract contract LockRegistryUpgradeable is OwnableUpgradeable, IERC721x {
 			lockMap[_id][last] = address(0);
 			lockMapIndex[_id][lastContract] = index;
 		}
-		else
+		else {
 			lockMap[_id][index] = address(0);
+		}
+
 		lockMapIndex[_id][_contract] = 0;
-		lockCount[_id]--;
+		unchecked {
+			lockCount[_id]--;
+		}
 		emit TokenUnlocked(_id, _contract);
 	}
 }

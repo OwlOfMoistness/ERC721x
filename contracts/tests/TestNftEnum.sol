@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.2;
 
-import "../erc721/ERC721x.sol";
+import "../enumerable/ERC721xEnum.sol";
 
-contract TestNFT is ERC721x("", "") {
+contract TestNFTEnum is ERC721xEnum("", "") {
 	function mint(uint256 _id) external {
 		_mint(msg.sender, _id);
 	}

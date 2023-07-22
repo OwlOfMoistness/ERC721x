@@ -8,11 +8,11 @@ pragma solidity ^0.8.17;
  *    -"-"-
  */
 
-import "@openzeppelin/token/ERC721/ERC721.sol";
-import "./LockRegistry.sol";
-import "./interfaces/IERC721x.sol";
+import "@openzeppelinupgrade/token/ERC721//ERC721Upgradeable.sol";
+import "../LockRegistryUpgradeable.sol";
+import "../interfaces/IERC721x.sol";
 
-contract ERC721x is ERC721, LockRegistry {
+contract ERC721xUpgradeable is ERC721Upgradeable, LockRegistryUpgradeable {
 
 	/*
 	 *     bytes4(keccak256('freeId(uint256,address)')) == 0x94d216d6
@@ -30,22 +30,24 @@ contract ERC721x is ERC721, LockRegistry {
 
 	bytes4 private constant _INTERFACE_ID_ERC721x = 0x706e8489;
 
-	constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {
-	}
+    function __ERC721x_init(string memory name_, string memory symbol_) internal onlyInitializing {
+        __ERC721_init(name_, symbol_);
+		__Ownable_init();
+    }
 
-	function supportsInterface(bytes4 _interfaceId) public view virtual override(ERC721) returns (bool) {
+	function supportsInterface(bytes4 _interfaceId) public view virtual override(ERC721Upgradeable) returns (bool) {
 		return _interfaceId == _INTERFACE_ID_ERC721x
 			|| super.supportsInterface(_interfaceId);
 	}
 
-	function transferFrom(address _from, address _to, uint256 _tokenId) public override virtual {
+	function transferFrom(address _from, address _to, uint256 _tokenId) public override(ERC721Upgradeable) virtual {
 		require(isUnlocked(_tokenId), "Token is locked");
-		ERC721.transferFrom(_from, _to, _tokenId);
+		ERC721Upgradeable.transferFrom(_from, _to, _tokenId);
 	}
 
-	function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory _data) public override virtual {
+	function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory _data) public override(ERC721Upgradeable) virtual {
 		require(isUnlocked(_tokenId), "Token is locked");
-		ERC721.safeTransferFrom(_from, _to, _tokenId, _data);
+		ERC721Upgradeable.safeTransferFrom(_from, _to, _tokenId, _data);
 	}
 
 	function lockId(uint256 _id) public override virtual {

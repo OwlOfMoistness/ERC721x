@@ -42,13 +42,13 @@ def test_ownership_changes(nft_lock_up, accounts):
     assert nft_lock_up.ownerOf(1337) != owner
 
 
-def test_total_supply_not_affected(nft_lock_up, accounts):
-    nft_lock_up.mint(accounts[2], 1337, {'from':accounts[0]})
-    total_supply = nft_lock_up.totalSupply()
+# def test_total_supply_not_affected(nft_lock_up, accounts):
+#     nft_lock_up.mint(accounts[2], 1337, {'from':accounts[0]})
+#     total_supply = nft_lock_up.totalSupply()
 
-    nft_lock_up.transferFrom(accounts[2], accounts[3], 1337, {'from': accounts[2]})
+#     nft_lock_up.transferFrom(accounts[2], accounts[3], 1337, {'from': accounts[2]})
 
-    assert nft_lock_up.totalSupply() == total_supply
+#     assert nft_lock_up.totalSupply() == total_supply
 
 
 def test_safe_transfer_from_approval(nft_lock_up, accounts):
