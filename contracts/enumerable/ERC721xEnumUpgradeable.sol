@@ -9,10 +9,10 @@ pragma solidity ^0.8.17;
  */
 
 import "@openzeppelinupgrade/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
-import "./LockRegistryUpgradeable.sol";
-import "./interfaces/IERC721x.sol";
+import "../LockRegistryUpgradeable.sol";
+import "../interfaces/IERC721x.sol";
 
-contract ERC721xUpgradeable is ERC721EnumerableUpgradeable, LockRegistryUpgradeable {
+contract ERC721xEnumUpgradeable is ERC721EnumerableUpgradeable, LockRegistryUpgradeable {
 
 	/*
 	 *     bytes4(keccak256('freeId(uint256,address)')) == 0x94d216d6
@@ -30,7 +30,7 @@ contract ERC721xUpgradeable is ERC721EnumerableUpgradeable, LockRegistryUpgradea
 
 	bytes4 private constant _INTERFACE_ID_ERC721x = 0x706e8489;
 
-    function __ERC721x_init(string memory name_, string memory symbol_) internal onlyInitializing {
+    function __ERC721xEnum_init(string memory name_, string memory symbol_) internal onlyInitializing {
         __ERC721_init(name_, symbol_);
 		__Ownable_init();
     }

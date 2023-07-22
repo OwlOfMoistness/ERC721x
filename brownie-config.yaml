@@ -4,6 +4,10 @@ networks:
 dependencies:
   - OpenZeppelin/openzeppelin-contracts@4.9.0
   - OpenZeppelin/openzeppelin-contracts-upgradeable@4.9.0
+  - chiru-labs/ERC721A@4.2.3
+  - chiru-labs/ERC721A-Upgradeable@4.2.3
+
+  
 
 compiler:
   solc:
@@ -11,5 +15,7 @@ compiler:
     remappings:
       - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.9.0/contracts"
       - "@openzeppelinupgrade=OpenZeppelin/openzeppelin-contracts-upgradeable@4.9.0/contracts"
+      - "@chiru=chiru-labs/ERC721A@4.2.3/contracts"
+      - "@chiru_ups=chiru-labs/ERC721A-Upgradeable@4.2.3/contracts"
 
 autofetch_sources: true
