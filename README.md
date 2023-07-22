@@ -2,6 +2,11 @@
 
 This standard allows contract that implement the `ILock` interface to lock/unlock assets in place to enable/disable them from being transferred.
 
+Notorious project using such implementation:
+- [CyberKongz](https://www.cyberkongz.com/)
+- [Memeland](https://www.memeland.com/)
+- [Keungz](https://keungz.com/)
+
 ## <ins>How does this work?</ins>
 
 The Lock Registry contains four mappings:
